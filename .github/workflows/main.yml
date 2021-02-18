@@ -30,7 +30,7 @@ jobs:
         cmd: install # will run `yarn install` command
         
     - name: build bootcamp project
-      run: yarn build
+      run: npm run build
       
     - name: Install Surge
       run: npm install --global surge
