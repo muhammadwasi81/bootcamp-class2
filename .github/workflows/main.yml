@@ -1,28 +1,16 @@
-name: Deploy
+name: My workflow
 
-on:
-  push:
-    branches: [ master ]
+on: push
 
 jobs:
-  build:
+  my-job:
+    name: My job
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v2
-
-    - name: Setup Node
-      uses: actions/setup-node@v2-beta
-      with:
-          node-version: 12
-
-    - name: Build React App
-      run: |
-        npm install # Install Dependencies
-        CI=false npm run build # CI=false to ignore warnings
-
-    - name: Install Surge
-      run: npm install -g surge
-
-    - name: Deploy to Surge
-      run:  surge ./build http://equal-education.surge.sh/ --token ${{secrets.TOKEN}}
+      - name: Deploy to http://equal-education.surge.sh/
+        uses: dswistowski/surge-sh-action@v1
+        with:
+          domain: 'foo-bar.surge.sh'
+          project: '.'
+          login: ${{ secrets.surge_login }}
+          token: ${{ secrets.surge_token }}
