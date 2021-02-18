@@ -1,3 +1,4 @@
+
 name: Deploy
 
 on:
@@ -5,28 +6,25 @@ on:
     branches: [ master ]
 
 jobs:
+  build:
     runs-on: ubuntu-latest
 
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v2
-      # Install node version 12
-      - uses: actions/setup-node@v2-beta
-        with:
-          node-version: '12'
+    - uses: actions/checkout@v2
 
-      # Install npm packages
-      - name: Install packages
-        run: npm install
+    - name: Setup Node
+      uses: actions/setup-node@v2-beta
+      with:
+          node-version: 12
 
-      # Build react app
-      - name: Build the app
-        run: npm run build
+    - name: Build React App
+      run: |
+        npm install # Install Dependencies
+        CI=false npm run build # CI=false to ignore warnings
 
-      # Install Surge 
-      - name: Install Surge
-        run: npm install -g surge
+    - name: Install Surge
+      run: npm install -g surge
 
-      # Deploy to the defined URL using the token
-      - name: Deploy to surge
-        run: surge ./build URL_TO_DEPLOY_TO --token ${{secrets.4a880eacd4ad728683f9f989544ef3cd}}
+    - name: Deploy to Surge
+      run:  surge ./build https://http://equal-education.surge.sh// --token ${{secrets.4a880eacd4ad728683f9f989544ef3cd}}
+
