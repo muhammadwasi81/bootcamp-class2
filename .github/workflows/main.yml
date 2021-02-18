@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Deploy to yellow-trade.surge.sh
-        uses: muhammadwasi81/surge-sh-action@v1
+        uses: surge-sh-action@v1
         with:
           domain: 'yellow-trade.surge.sh'
           project: './build'
