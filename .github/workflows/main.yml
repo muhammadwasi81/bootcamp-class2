@@ -12,5 +12,4 @@ jobs:
         with:
           domain: 'http://equal-education.surge.sh/'
           project: '.'
-          login: ${{ secrets.Wasiarain819@gmail.com }}
           token: ${{ secrets.  c03a519c0a90eac21b63a94ff6bf8657}}
