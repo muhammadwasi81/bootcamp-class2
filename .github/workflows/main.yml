@@ -26,5 +26,5 @@ jobs:
       run: npm install -g surge
 
     - name: Deploy to Surge
-      run:  surge ./build https://http://equal-education.surge.sh// --token ${{secrets.4a880eacd4ad728683f9f989544ef3cd}}
+      run:  surge ./build https://someawsomeurl.surge.sh/ --token ${{secrets.4a880eacd4ad728683f9f989544ef3cd}}
 
