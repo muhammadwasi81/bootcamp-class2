@@ -36,7 +36,7 @@ jobs:
           echo test, and deploy your project.
           
    - name: Setup Node.js environment
-     uses: actions/setup-node@1.4.2
+     uses: actions/setup-node@v2-beta
      with:
      version: 12
      - name: GitHub Action for NPM/Chrome
