@@ -7,7 +7,7 @@ jobs:
     name: My job
     runs-on: ubuntu-latest
     steps:
-      - name: Deploy to http://equal-education.surge.sh/
+      - name: Deploy to equal-education.surge.sh
         uses: dswistowski/surge-sh-action@v1
         with:
           domain: 'http://equal-education.surge.sh/'
