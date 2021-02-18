@@ -1,15 +1,32 @@
-name: My workflow
+name: Deploy
 
-on: push
+on:
+  push:
+    branches: [ master ]
 
 jobs:
-  my-job:
-    name: My job
     runs-on: ubuntu-latest
+
     steps:
-      - name: Deploy to equal-education.surge.sh
-        uses: dswistowski/surge-sh-action@v1
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - uses: actions/checkout@v2
+      # Install node version 12
+      - uses: actions/setup-node@v2-beta
         with:
-          domain: 'http://equal-education.surge.sh/'
-          project: '.'
-          token: ${{ secrets.  c03a519c0a90eac21b63a94ff6bf8657}}
+          node-version: '12'
+
+      # Install npm packages
+      - name: Install packages
+        run: npm install
+
+      # Build react app
+      - name: Build the app
+        run: npm run build
+
+      # Install Surge 
+      - name: Install Surge
+        run: npm install -g surge
+
+      # Deploy to the defined URL using the token
+      - name: Deploy to surge
+        run: surge ./build URL_TO_DEPLOY_TO --token ${{secrets.4a880eacd4ad728683f9f989544ef3cd}}
